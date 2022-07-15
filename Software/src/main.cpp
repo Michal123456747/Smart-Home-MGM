@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief Functions in main.cpp file are necessary to complete static memory check process by cppcheck
+ * @brief Functions in main.cpp file are necessary to complete memory check process by cppcheck
  */
 
 #ifdef CHECK
