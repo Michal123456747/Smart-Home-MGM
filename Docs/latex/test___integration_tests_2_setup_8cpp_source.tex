@@ -1,0 +1,25 @@
+\hypertarget{test___integration_tests_2_setup_8cpp_source}{}\doxysection{Setup.\+cpp}
+\label{test___integration_tests_2_setup_8cpp_source}\index{test/test\_IntegrationTests/Setup.cpp@{test/test\_IntegrationTests/Setup.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <gmock/gmock.h>}}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00004}00004 \textcolor{keywordtype}{void} setup()}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00005}00005 \{}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00006}00006     Serial.begin(115200);}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00008}00008     ::testing::InitGoogleMock();}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00009}00009 \}}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00011}00011 \textcolor{keywordtype}{void} loop()}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00012}00012 \{}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00013}00013   \textcolor{comment}{// Run tests}}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00014}00014   \textcolor{keywordflow}{if} (RUN\_ALL\_TESTS())}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00015}00015   ;}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00017}00017   \textcolor{comment}{// sleep for 1 sec}}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00018}00018   delay(1000);}
+\DoxyCodeLine{\Hypertarget{test___integration_tests_2_setup_8cpp_source_l00019}00019 \}}
+
+\end{DoxyCode}
