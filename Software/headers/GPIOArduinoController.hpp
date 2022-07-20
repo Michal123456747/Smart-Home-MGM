@@ -15,10 +15,16 @@ class GPIOController
     virtual void set_to_pin(byte) = 0;
 };
 
+struct PIN
+{
+    byte number;
+    byte type;
+    bool status;
+};
 
 class GPIOArduinoController: public GPIOController
 {
-    std::vector<byte> pins_reserved;
+    std::vector<PIN> pins_reserved;
 public:
     GPIOArduinoController();
 

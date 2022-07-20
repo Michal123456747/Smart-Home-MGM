@@ -1,7 +1,7 @@
 
 #include "/home/greggy/projekty_linux/smart-home-mgm/Software/Software/headers/GPIOArduinoController.hpp" // to change
 
-bool GPIO::GPIOArduinoController::reserve_pin(byte pin, byte type, bool status)
+bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, bool status)
 {
     if(type < 3)
         return false;
@@ -14,8 +14,11 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin, byte type, bool status)
 
     for(auto i : pins_reserved)
     {
-
+        if(i.number == pin_num)
+            return false;
     }
+
+    
 
     return true;
 }
