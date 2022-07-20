@@ -3,6 +3,7 @@
 
 
 #include <Arduino.h>
+#include <vector>
 
 namespace GPIO
 {
@@ -17,7 +18,7 @@ class GPIOController
 
 class GPIOArduinoController: public GPIOController
 {
-
+    std::vector<byte> pins_reserved;
 public:
     GPIOArduinoController();
 

@@ -12,6 +12,10 @@ bool GPIO::GPIOController::reserve_pin(byte pin, byte type, bool status)
     2 - analog
     */
 
+    for(auto i : pins_reserved)
+    {
+
+    }
 
     return true;
 }
