@@ -7,6 +7,21 @@ GPIO::PIN::PIN(byte pin_num, byte type, bool status)
     status_(status)
     {}
 
+byte GPIO::PIN::check(byte what)
+{
+    switch (what)
+    {
+    case 0:
+        return number_;
+    case 1:
+        return type_;
+    case 2:
+        return status_;
+    default:
+        break;
+    }
+}
+
 bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, bool status)
 {
     if(type < 3)

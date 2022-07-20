@@ -32,7 +32,7 @@ class PIN
 public:
     PIN(byte, byte, bool);
 
-
+    byte check(byte); // 0, 1 or 2
 
     ~PIN() = default;
 };
