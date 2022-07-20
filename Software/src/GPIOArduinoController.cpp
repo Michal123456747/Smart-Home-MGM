@@ -32,15 +32,15 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, bool stat
     1 - digital     false - output
     2 - analog
     */
-
+    
     for(auto i : pins_reserved_)
     {
-        if(i.number_ == pin_num)
+        if(i.check(NUM_) == pin_num)
             return false;
     }
 
-    PIN reserved;
-
+    PIN reserved(pin_num, type, status);
+    pins_reserved_.push_back(reserved);
 
     return true;
 }

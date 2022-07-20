@@ -8,13 +8,16 @@
 namespace GPIO
 {
 
-#define NUM 0
-#define TYPE 1
-#define STATUS 2
+#define NUM_ 0
+#define TYPE_ 1
+#define STATUS_ 2
 
-#define PWM 0
-#define DIGITAL 1
-#define ANALOG 2
+#define PWM_ 0
+#define DIGITAL_ 1
+#define ANALOG_ 2
+
+#define INPUT_ true
+#define OUTPUT_ false
 
 class GPIOController
 {
