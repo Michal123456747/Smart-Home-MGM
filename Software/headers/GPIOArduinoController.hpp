@@ -4,6 +4,9 @@
 
 #include <Arduino.h>
 
+namespace GPIO
+{
+
 class GPIOArduinoController
 {
 
@@ -17,3 +20,5 @@ public:
 
     ~GPIOArduinoController();
 };
+
+}
