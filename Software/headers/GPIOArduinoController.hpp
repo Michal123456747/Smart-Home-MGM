@@ -10,9 +10,9 @@ namespace GPIO
 
 class GPIOController
 {
-    virtual bool reserve_pin(byte, byte, bool) = 0;
-    virtual unsigned int read_from_pin(byte) = 0;
-    virtual void set_to_pin(byte) = 0;
+    virtual bool reserve_pin() = 0;
+    virtual unsigned int read_from_pin() = 0;
+    virtual void set_to_pin() = 0;
 };
 
 struct PIN
