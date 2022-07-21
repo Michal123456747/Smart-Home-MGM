@@ -12,9 +12,8 @@ namespace GPIO
 #define TYPE_ 1     // for PIN::check
 #define STATUS_ 2
 
-#define PWM_ 0
-#define DIGITAL_ 1  // for GPIOArduinoController::reserve_pin
-#define ANALOG_ 2
+#define DIGITAL_ 0  // for GPIOArduinoController::reserve_pin
+#define ANALOG_ 1
 
 #define OUTPUT_ 0
 #define INPUT_ 1    // for GPIOArduinoController::reserve_pin

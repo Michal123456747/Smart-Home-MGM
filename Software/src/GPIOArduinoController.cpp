@@ -24,13 +24,13 @@ byte GPIO::PIN::check(byte what)    // check the PIN variables
 
 bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, byte status) // reserve pin
 {
-    if(type < 3 || status < 3)    // there are only 3 types and 3 possible status
+    if(type >= 2 || status >= 3)    // there are only 2 types and 3 possible status
         return false;
     /*
     type:           status:
-    0 - pwm         0 - output
-    1 - digital     1 - input
-    2 - analog      2 - input pullup
+    0 - digital     0 - output
+    1 - analog      1 - input
+    .               2 - input pullup
     */
 
     for(auto i : pins_reserved_)    // if pin is already reserved return false
@@ -62,7 +62,7 @@ bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set t
         {
             found = true;   // that means we found it
 
-            if(pins_reserved_.at(pin_location).check(TYPE_) != 1)  // if not digital
+            if(pins_reserved_.at(pin_location).check(TYPE_) != DIGITAL_)  // if not digital
                 return false;
 
             if(value)
@@ -78,7 +78,28 @@ bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set t
     return found;       // if pin is not reserved return false
 }
 
-bool GPIO::GPIOArduinoController::set_to_pin(byte, unsigned int) // set to pin for analog type
+bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, unsigned int value) // set to pin for analog type
 {
-    ;
+    if(value >= 1024)   // analog value can be from 0 to 1023
+        return false;
+
+    byte pin_location = 0;
+    bool found = false;
+    while(pin_location < pins_reserved_.size())     // finding pin in the vector
+    {
+        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
+        {
+            found = true;   // that means we found it
+
+            if(pins_reserved_.at(pin_location).check(TYPE_) != ANALOG_)  // if not analog
+                return false;
+
+            analogWrite(pin_num, value);   // setting value to pin
+
+            break;
+        }
+        ++pin_location;
+    }
+
+    return found;       // if pin is not reserved return false
 }
