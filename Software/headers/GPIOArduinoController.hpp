@@ -16,12 +16,13 @@ namespace GPIO
 #define DIGITAL_ 1  // for GPIOArduinoController::reserve_pin
 #define ANALOG_ 2
 
-#define INPUT_ true // for GPIOArduinoController::reserve_pin
-#define OUTPUT_ false
+#define OUTPUT_ 0
+#define INPUT_ 1    // for GPIOArduinoController::reserve_pin
+#define INPUT_PULLUP_ 2
 
 class GPIOController
 {
-    virtual bool reserve_pin(byte, byte, bool) = 0;
+    virtual bool reserve_pin(byte, byte, byte) = 0;
     virtual unsigned int read_from_pin(byte) = 0;
     virtual bool set_to_pin(byte, bool) = 0;
     virtual bool set_to_pin(byte, unsigned int) = 0;
@@ -31,10 +32,10 @@ class PIN
 {
     byte number_;
     byte type_;
-    bool status_;
+    byte status_;
 
 public:
-    PIN(byte, byte, bool);
+    PIN(byte, byte, byte);
 
     byte check(byte); // 0, 1 or 2
 
@@ -47,7 +48,7 @@ class GPIOArduinoController: public GPIOController
 public:
     GPIOArduinoController() = default;
 
-    virtual bool reserve_pin(byte, byte, bool)  override;
+    virtual bool reserve_pin(byte, byte, byte)  override;
     virtual unsigned int read_from_pin(byte)    override;
     virtual bool set_to_pin(byte, bool)         override;
     virtual bool set_to_pin(byte, unsigned int) override;
