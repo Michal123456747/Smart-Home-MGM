@@ -65,7 +65,10 @@ bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set t
             if(pins_reserved_.at(pin_location).check(TYPE_) != 1)  // if not digital
                 return false;
 
-            digitalWrite(pin_num, value);   // setting vaule to pin
+            if(value)
+                digitalWrite(pin_num, HIGH);   // setting value to pin
+            else
+                digitalWrite(pin_num, LOW);
 
             break;
         }
@@ -73,4 +76,9 @@ bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set t
     }
 
     return found;       // if pin is not reserved return false
+}
+
+bool GPIO::GPIOArduinoController::set_to_pin(byte, unsigned int) // set to pin for analog type
+{
+    ;
 }
