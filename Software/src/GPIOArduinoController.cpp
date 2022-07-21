@@ -33,7 +33,7 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, bool stat
     2 - analog
     */
 
-    for(auto i : pins_reserved_)    // if pin is already reserved retrun false
+    for(auto i : pins_reserved_)    // if pin is already reserved return false
     {
         if(i.check(NUM_) == pin_num)
             return false;
@@ -43,4 +43,16 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, bool stat
     pins_reserved_.push_back(reserved);     // adding pin to vector
 
     return true;
+}
+
+bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)
+{
+    byte pin_location = 0;
+    while(pin_location < pins_reserved_.size())
+    {
+        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)
+            break;
+        ++pin_location;
+    }
+
 }
