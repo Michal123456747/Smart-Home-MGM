@@ -1,5 +1,5 @@
 
-#include "/home/greggy/projekty_linux/smart-home-mgm/Software/Software/headers/GPIOArduinoController.hpp" // to change
+#include "GPIOArduinoController.hpp"
 
 GPIO::PIN::PIN(byte pin_num, byte type, byte status)    // PIN constructor
     : number_(pin_num),
