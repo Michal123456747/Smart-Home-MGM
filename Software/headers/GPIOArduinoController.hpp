@@ -27,30 +27,30 @@ class GPIOController
     virtual bool set_to_pin(byte, unsigned int) = 0;
 };
 
-class PIN
+class PIN   // WARNING: no data control - use only in other classes
 {
     byte number_;
     byte type_;
     byte status_;
 
 public:
-    PIN(byte, byte, byte);
+    PIN(byte, byte, byte);  // input is pin number, pin type and pin status - constructor
 
-    byte check(byte); // 0, 1 or 2
+    byte check(byte); // input 0, 1 or 2 - used to check the pin number, type or status
 
     ~PIN() = default;
 };
 
 class GPIOArduinoController: public GPIOController
 {
-    std::vector<PIN> pins_reserved_;
+    std::vector<PIN> pins_reserved_;    // list of pins already reserved
 public:
     GPIOArduinoController() = default;
 
-    virtual bool reserve_pin(byte, byte, byte)  override;
-    virtual unsigned int read_from_pin(byte)    override;
-    virtual bool set_to_pin(byte, bool)         override;
-    virtual bool set_to_pin(byte, unsigned int) override;
+    virtual bool reserve_pin(byte, byte, byte)  override;   // input - pin number, pin type and pin status  - pin reservation
+    virtual unsigned int read_from_pin(byte)    override;   // input - pin number                           - reading value from pin
+    virtual bool set_to_pin(byte, bool)         override;   // input - pin number, value (false or true)    - setting value for digital pin
+    virtual bool set_to_pin(byte, unsigned int) override;   // input - pin number, value (from 0 to 1023)   - setting value for analog pin
 
     ~GPIOArduinoController() = default;
 };
