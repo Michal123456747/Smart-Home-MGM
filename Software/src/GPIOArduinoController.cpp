@@ -52,6 +52,29 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, byte stat
     return true;
 }
 
+unsigned int GPIO::GPIOArduinoController::read_from_pin(byte pin_num)    // reading value from pin
+{
+    byte pin_location = 0;
+    bool found = false;
+    bool digital_or_analog = false; // digital - false, analog - true
+    while(pin_location < pins_reserved_.size())     // finding pin in the vector
+    {
+        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
+        {
+            found = true;   // that means we found it
+            break;
+        }
+        ++pin_location;
+    }
+
+    if(found)
+    {
+        
+    }
+
+    return 0;
+}
+
 bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set to pin for digital type
 {
     byte pin_location = 0;
