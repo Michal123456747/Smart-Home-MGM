@@ -56,7 +56,6 @@ unsigned int GPIO::GPIOArduinoController::read_from_pin(byte pin_num)    // read
 {
     byte pin_location = 0;
     bool found = false;
-    bool digital_or_analog = false; // digital - false, analog - true
     while(pin_location < pins_reserved_.size())     // finding pin in the vector
     {
         if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
@@ -67,9 +66,18 @@ unsigned int GPIO::GPIOArduinoController::read_from_pin(byte pin_num)    // read
         ++pin_location;
     }
 
-    if(found)
+    if(found)   // if we found pin in vector
     {
-        
+        if(pins_reserved_.at(pin_location).check(TYPE_) == DIGITAL_)    // if type is digital
+        {
+            if(digitalRead(pin_num) == HIGH)    // return 0 or 1
+                return 1;
+            return 0;
+        }
+        else    // if type is analog
+        {
+            return analogRead(pin_num); // return value from 0 to 1023
+        }
     }
 
     return 0;
