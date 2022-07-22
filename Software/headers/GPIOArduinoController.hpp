@@ -30,8 +30,8 @@ class GPIOController
 class PIN   // WARNING: no data control - use only in other classes
 {
     byte number_;
-    byte type_;
-    byte status_;
+    byte type_;     // digital or analog - should be 0 or 1
+    byte status_;   // input, output or input pullup - should be from 0 to 2
 
 public:
     PIN(byte, byte, byte);  // input is pin number, pin type and pin status - constructor
