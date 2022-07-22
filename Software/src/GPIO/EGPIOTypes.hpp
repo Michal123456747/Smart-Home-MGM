@@ -13,9 +13,9 @@ namespace GPIO
      */
     enum PinMode
     {
-        OUTPUT = 0,
-        INPUT = 1,
-        INPUT_PULLUP = 2
+        OUTPUT_ = 0,
+        INPUT_ = 1,
+        INPUT_PULLUP_ = 2
     };
 
 
@@ -25,7 +25,7 @@ namespace GPIO
      */
     enum PinType
     {
-        DIGITAL = 0,
-        ANALOG = 1
+        DIGITAL_ = 0,
+        ANALOG_ = 1
     };
 }
