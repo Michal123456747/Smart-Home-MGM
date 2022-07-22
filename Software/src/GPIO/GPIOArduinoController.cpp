@@ -1,26 +1,32 @@
+/**
+ * @file GPIOArduinoController.cpp
+ * @brief 
+ */
+
+#include <Arduino.h>
 
 #include "GPIOArduinoController.hpp"
 
-GPIO::PIN::PIN(byte pin_num, byte type, byte status)    // PIN constructor
-    : number_(pin_num),
-    type_(type),
-    status_(status)
-    {}
+// GPIO::PIN::PIN(byte pin_num, byte type, byte status)    // PIN constructor
+//     : number_(pin_num),
+//     type_(type),
+//     status_(status)
+//     {}
 
-byte GPIO::PIN::check(byte what)    // check the PIN variables
-{
-    switch (what)
-    {
-    case 0:
-        return number_;
-    case 1:
-        return type_;
-    case 2:
-        return status_;
-    default:
-        break;
-    }
-}
+// byte GPIO::PIN::check(byte what)    // check the PIN variables
+// {
+//     switch (what)
+//     {
+//     case 0:
+//         return number_;
+//     case 1:
+//         return type_;
+//     case 2:
+//         return status_;
+//     default:
+//         break;
+//     }
+// }
 
 bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, byte status) // reserve pin
 {
