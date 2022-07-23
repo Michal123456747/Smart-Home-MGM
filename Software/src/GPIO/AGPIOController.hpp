@@ -1,7 +1,8 @@
 /**
- * @copydoc AWifiController::AddParameter
+ * @brief Contains abstract type AGPIOController that controls GPIO pins
+ * 
  */
-//TODO: poprawić komentarz pliku
+
 #include <stdint.h>
 
 #include "EGPIOTypes.hpp"
@@ -10,6 +11,10 @@
 
 namespace GPIOManage
 {
+    /**
+     * @brief Type that controls GPIO pins
+     * 
+     */
     class AGPIOController
     {
     public:
