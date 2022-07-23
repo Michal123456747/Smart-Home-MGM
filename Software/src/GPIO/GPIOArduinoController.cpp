@@ -7,30 +7,9 @@
 
 #include "GPIOArduinoController.hpp"
 
-// GPIO::PIN::PIN(byte pin_num, byte type, byte status)    // PIN constructor
-//     : number_(pin_num),
-//     type_(type),
-//     status_(status)
-//     {}
-
-// byte GPIO::PIN::check(byte what)    // check the PIN variables
-// {
-//     switch (what)
-//     {
-//     case 0:
-//         return number_;
-//     case 1:
-//         return type_;
-//     case 2:
-//         return status_;
-//     default:
-//         break;
-//     }
-// }
-
-bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, byte status) // reserve pin
+bool GPIO::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
 {
-    if(type >= 2 || status >= 3)    // there are only 2 types and 3 possible status
+    if(type >= 2 || mode >= 3)    // there are only 2 types and 3 possible status
         return false;
     /*
     type:           status:
@@ -39,32 +18,32 @@ bool GPIO::GPIOArduinoController::reserve_pin(byte pin_num, byte type, byte stat
     .               2 - input pullup
     */
 
-    for(auto i : pins_reserved_)    // if pin is already reserved return false
+    for(auto i : pins_)    // if pin is already reserved return false
     {
-        if(i.check(NUM_) == pin_num)
+        if(i.number_ == pinNum)
             return false;
     }
 
-    if(status == 0)
-        pinMode(pin_num, OUTPUT);    // pin reservation
-    else if (status == 1)
-        pinMode(pin_num, INPUT);
+    if(mode == 0)
+        pinMode(pinNum, OUTPUT);    // pin reservation
+    else if (mode == 1)
+        pinMode(pinNum, INPUT);
     else
-        pinMode(pin_num, INPUT_PULLUP);
+        pinMode(pinNum, INPUT_PULLUP);
 
-    PIN reserved(pin_num, type, status);    // creating a PIN object
-    pins_reserved_.push_back(reserved);     // adding pin to vector
+    Pin reserved(pinNum, type, mode);    // creating a PIN object
+    pins_.push_back(reserved);     // adding pin to vector
 
     return true;
 }
 
-unsigned int GPIO::GPIOArduinoController::read_from_pin(byte pin_num)    // reading value from pin
+unsigned int GPIO::GPIOControllerArduinoFr::ReadFromPin(uint8_t pinNum)    // reading value from pin
 {
     byte pin_location = 0;
     bool found = false;
-    while(pin_location < pins_reserved_.size())     // finding pin in the vector
+    while(pin_location < pins_.size())     // finding pin in the vector
     {
-        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
+        if(pins_.at(pin_location).number_ == pinNum)  // if pin number is the same
         {
             found = true;   // that means we found it
             break;
@@ -74,38 +53,38 @@ unsigned int GPIO::GPIOArduinoController::read_from_pin(byte pin_num)    // read
 
     if(found)   // if we found pin in vector
     {
-        if(pins_reserved_.at(pin_location).check(TYPE_) == DIGITAL_)    // if type is digital
+        if(pins_.at(pin_location).type_ == DIGITAL_)    // if type is digital
         {
-            if(digitalRead(pin_num) == HIGH)    // return 0 or 1
+            if(digitalRead(pinNum) == HIGH)    // return 0 or 1
                 return 1;
             return 0;
         }
         else    // if type is analog
         {
-            return analogRead(pin_num); // return value from 0 to 1023
+            return analogRead(pinNum); // return value from 0 to 1023
         }
     }
 
     return 0;
 }
 
-bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set to pin for digital type
+bool GPIO::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, bool value)  // set to pin for digital type
 {
     byte pin_location = 0;
     bool found = false;
-    while(pin_location < pins_reserved_.size())     // finding pin in the vector
+    while(pin_location < pins_.size())     // finding pin in the vector
     {
-        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
+        if(pins_.at(pin_location).number_ == pinNum)  // if pin number is the same
         {
             found = true;   // that means we found it
 
-            if(pins_reserved_.at(pin_location).check(TYPE_) != DIGITAL_)  // if not digital
+            if(pins_.at(pin_location).type_ != DIGITAL_)  // if not digital
                 return false;
 
             if(value)
-                digitalWrite(pin_num, HIGH);   // setting value to pin
+                digitalWrite(pinNum, HIGH);   // setting value to pin
             else
-                digitalWrite(pin_num, LOW);
+                digitalWrite(pinNum, LOW);
 
             break;
         }
@@ -115,23 +94,23 @@ bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, bool value)  // set t
     return found;       // if pin is not reserved return false
 }
 
-bool GPIO::GPIOArduinoController::set_to_pin(byte pin_num, unsigned int value) // set to pin for analog type
+bool GPIO::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, unsigned int value) // set to pin for analog type
 {
     if(value >= 1024)   // analog value can be from 0 to 1023
         return false;
 
     byte pin_location = 0;
     bool found = false;
-    while(pin_location < pins_reserved_.size())     // finding pin in the vector
+    while(pin_location < pins_.size())     // finding pin in the vector
     {
-        if(pins_reserved_.at(pin_location).check(NUM_) == pin_num)  // if pin number is the same
+        if(pins_.at(pin_location).number_ == pinNum)  // if pin number is the same
         {
             found = true;   // that means we found it
 
-            if(pins_reserved_.at(pin_location).check(TYPE_) != ANALOG_)  // if not analog
+            if(pins_.at(pin_location).type_ != ANALOG_)  // if not analog
                 return false;
 
-            analogWrite(pin_num, value);   // setting value to pin
+            analogWrite(pinNum, value);   // setting value to pin
 
             break;
         }

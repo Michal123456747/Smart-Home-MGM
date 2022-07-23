@@ -1,6 +1,5 @@
 /**
- * @file AGPIOController.hpp
- * @brief 
+ * @copydoc AWifiController::AddParameter
  */
 
 #include <stdint.h>
@@ -14,6 +13,7 @@ namespace GPIO
 {
     class AGPIOController
     {
+    public:
         /**
          * @brief 
          * 
