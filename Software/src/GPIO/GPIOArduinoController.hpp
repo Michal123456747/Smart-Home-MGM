@@ -12,7 +12,7 @@
 
 #pragma once
 
-namespace GPIO
+namespace GPIOManage
 {
     /**
      * @brief Class responsible for controlling readings, values and pin reservations for Arduino
@@ -67,4 +67,4 @@ namespace GPIO
         std::vector<Pin> pins_;    // list of pins already reserved
     };
 
-}   // namespace GPIO
+}   // namespace GPIOManage

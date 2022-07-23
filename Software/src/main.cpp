@@ -7,7 +7,6 @@
 
 #ifdef ARDUINO
 #include <Arduino.h>
-#include "GPIOArduinoController.hpp"
 
 void setup() {}
 

@@ -7,7 +7,7 @@
 
 #include "GPIOArduinoController.hpp"
 
-bool GPIO::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
+bool GPIOManage::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
 {
     //if(type >= 2 || mode >= 3)    // there are only 2 types and 3 possible status
     //    return false;
@@ -37,7 +37,7 @@ bool GPIO::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, Pin
     return true;
 }
 
-unsigned int GPIO::GPIOControllerArduinoFr::ReadFromPin(uint8_t pinNum)    // reading value from pin
+unsigned int GPIOManage::GPIOControllerArduinoFr::ReadFromPin(uint8_t pinNum)    // reading value from pin
 {
     byte pin_location = 0;
     bool found = false;
@@ -68,7 +68,7 @@ unsigned int GPIO::GPIOControllerArduinoFr::ReadFromPin(uint8_t pinNum)    // re
     return 0;
 }
 
-bool GPIO::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, bool value)  // set to pin for digital type
+bool GPIOManage::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, bool value)  // set to pin for digital type
 {
     byte pin_location = 0;
     bool found = false;
@@ -94,7 +94,7 @@ bool GPIO::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, bool value)  // s
     return found;       // if pin is not reserved return false
 }
 
-bool GPIO::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, unsigned int value) // set to pin for analog type
+bool GPIOManage::GPIOControllerArduinoFr::WriteToPin(uint8_t pinNum, unsigned int value) // set to pin for analog type
 {
     if(value >= 1024)   // analog value can be from 0 to 1023
         return false;

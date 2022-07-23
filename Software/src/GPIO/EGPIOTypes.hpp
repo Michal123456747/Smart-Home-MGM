@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace GPIO
+namespace GPIOManage
 {
     /**
      * @brief Mode that pin actually working in 
@@ -28,4 +28,4 @@ namespace GPIO
         DIGITAL_ = 0,
         ANALOG_ = 1
     };
-}
+}   // namespace GPIOManage

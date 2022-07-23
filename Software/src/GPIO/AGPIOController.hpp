@@ -1,14 +1,14 @@
 /**
  * @copydoc AWifiController::AddParameter
  */
-
+//TODO: poprawić komentarz pliku
 #include <stdint.h>
 
 #include "EGPIOTypes.hpp"
 
 #pragma once
 
-namespace GPIO
+namespace GPIOManage
 {
     class AGPIOController
     {
@@ -49,4 +49,4 @@ namespace GPIO
          */
         virtual bool WriteToPin(uint8_t pinNum, unsigned int value) = 0;
     };
-}   // namespace GPIO
+}   // namespace GPIOManage

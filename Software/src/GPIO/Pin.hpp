@@ -9,7 +9,7 @@
 
 #pragma once
 
-namespace GPIO
+namespace GPIOManage
 {
     /**
      * @brief Type that contains all data about pin configuration
@@ -24,4 +24,4 @@ namespace GPIO
         : number_(number), type_(type), mode_(mode)
         {}
     };
-} // namespace GPIO
+} // namespace GPIOManage
