@@ -9,8 +9,8 @@
 
 bool GPIO::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
 {
-    if(type >= 2 || mode >= 3)    // there are only 2 types and 3 possible status
-        return false;
+    //if(type >= 2 || mode >= 3)    // there are only 2 types and 3 possible status
+    //    return false;
     /*
     type:           status:
     0 - digital     0 - output
@@ -24,9 +24,9 @@ bool GPIO::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, Pin
             return false;
     }
 
-    if(mode == 0)
+    if(mode == OUTPUT_)
         pinMode(pinNum, OUTPUT);    // pin reservation
-    else if (mode == 1)
+    else if (mode == INPUT_)
         pinMode(pinNum, INPUT);
     else
         pinMode(pinNum, INPUT_PULLUP);
