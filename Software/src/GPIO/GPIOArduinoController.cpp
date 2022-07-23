@@ -1,6 +1,6 @@
 /**
  * @file GPIOArduinoController.cpp
- * @brief 
+ * @brief Contains codes for the methods of the GPIOControllerArduinoFr class
  */
 
 #include <Arduino.h>
