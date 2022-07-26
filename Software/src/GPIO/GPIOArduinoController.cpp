@@ -10,14 +10,8 @@
 
 bool GPIOManage::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
 {
-    if(std::any_of(pins_.begin(), pins_.end(), [pinNum](uint8_t i){return i == pinNum;}))  // if pin is already reserved return false
+    if(std::any_of(pins_.begin(), pins_.end(), [pinNum](Pin i){return i.number_ == pinNum;}))  // if pin is already reserved return false
         return false;
-
-    // for(auto i : pins_)    // if pin is already reserved return false
-    // {
-    //     if(i.number_ == pinNum)
-    //         return false;
-    // }
 
     if(mode == OUTPUT_)
         pinMode(pinNum, OUTPUT);    // pin reservation
