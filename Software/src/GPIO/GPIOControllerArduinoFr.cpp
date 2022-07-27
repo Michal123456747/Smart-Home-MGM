@@ -3,6 +3,8 @@
  * @brief Contains codes for the methods of the GPIOControllerArduinoFr class
  */
 
+//TODO: Add logging system and auto error correction
+
 #include <Arduino.h>
 #include <algorithm>
 
