@@ -1,5 +1,5 @@
 /**
- * @file GPIOArduinoController.hpp
+ * @file GPIOControllerArduinoFr.hpp
  * @brief A header in which the GPIOControllerArduinoFr class publicly inheriting from the AGPIOController abstract class is declared
  */
 

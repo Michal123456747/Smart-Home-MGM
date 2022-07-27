@@ -1,12 +1,12 @@
 /**
- * @file GPIOArduinoController.cpp
+ * @file GPIOControllerArduinoFr.cpp
  * @brief Contains codes for the methods of the GPIOControllerArduinoFr class
  */
 
 #include <Arduino.h>
 #include <algorithm>
 
-#include "GPIOArduinoController.hpp"
+#include "GPIOControllerArduinoFr.hpp"
 
 bool GPIOManage::GPIOControllerArduinoFr::ReservePin(uint8_t pinNum, PinType type, PinMode mode) // reserve pin
 {

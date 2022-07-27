@@ -1,5 +1,5 @@
 #include <gmock/gmock.h>
-#include "GPIO/GPIOArduinoController.hpp"
+#include "GPIO/GPIOControllerArduinoFr.hpp"
 
 TEST(GPIOControllerArduinoFr_ReservePin, ReserveSamePinTwice)
 {
