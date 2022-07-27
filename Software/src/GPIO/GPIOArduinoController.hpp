@@ -33,7 +33,7 @@ namespace GPIOManage
          * @return true on success
          * @return false on fail
          */
-        virtual bool ReservePin(uint8_t pinNum, PinType type, PinMode mode) override;   // pin reservation
+        bool ReservePin(uint8_t pinNum, PinType type, PinMode mode) override;   // pin reservation
 
         /**
          * @brief Method used to read a value from a pin - 0 or 1 if pin is digital, from 0 to 1023 if pin is analog
@@ -41,7 +41,7 @@ namespace GPIOManage
          * @param pinNum
          * @return unsigned int
          */
-        virtual unsigned int ReadFromPin(uint8_t pinNum) override;   // reading value from pin
+        unsigned int ReadFromPin(uint8_t pinNum) override;   // reading value from pin
 
         /**
          * @brief Overloaded method used to set a digital pin to a given value
@@ -51,7 +51,7 @@ namespace GPIOManage
          * @return true on success
          * @return false on fail
          */
-        virtual bool WriteToPin(uint8_t pinNum, bool value) override;   // setting value for digital pin
+        bool WriteToPin(uint8_t pinNum, bool value) override;   // setting value for digital pin
 
         /**
          * @brief Overloaded method used to set a analog pin to a given value
@@ -61,7 +61,7 @@ namespace GPIOManage
          * @return true on success
          * @return false on fail
          */
-        virtual bool WriteToPin(uint8_t pinNum, unsigned int value) override;   // setting value for analog pin
+        bool WriteToPin(uint8_t pinNum, unsigned int value) override;   // setting value for analog pin
 
     private:
         std::vector<Pin> pins_;    // list of pins already reserved
