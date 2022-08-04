@@ -26,8 +26,14 @@ typedef unsigned int UBaseType_t;
     #define errQUEUE_BLOCKED (-4)
     #define errQUEUE_YIELD (-5)
 
-    typedef uint32_t TickType_t;
+typedef uint32_t TickType_t;
 
     #define portTICK_PERIOD_MS
+
+struct QueueDefinition;
+typedef struct QueueDefinition *QueueHandle_t;
+typedef struct QueueDefinition *QueueSetHandle_t;
+typedef struct QueueDefinition *QueueSetMemberHandle_t;
+typedef QueueHandle_t SemaphoreHandle_t;
 
 #endif

@@ -13,10 +13,6 @@
 //------------------------------------------------------------------------------
 // Types
 
-struct QueueDefinition; /* Using old naming convention so as not to break kernel aware debuggers. */
-typedef struct QueueDefinition *QueueHandle_t;
-typedef struct QueueDefinition *QueueSetHandle_t;
-typedef struct QueueDefinition *QueueSetMemberHandle_t;
 
 //------------------------------------------------------------------------------
 // Mocking class
