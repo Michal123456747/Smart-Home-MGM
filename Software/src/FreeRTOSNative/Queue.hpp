@@ -49,6 +49,14 @@ public:
         return pdTRUE;
     }
 
+    /**
+     * @return BaseType_t pxHigherPriorityTaskWoken that will be updated by xQueue...FromISR functions
+     */
+    virtual BaseType_t GetPxHigherPriorityTaskWoken()
+    {
+        return pdTRUE;
+    }
+
     static Queue *queue;
 };
 
@@ -63,6 +71,7 @@ BaseType_t xQueueSend(QueueHandle_t xQueue, const void *pvItemToQueue, TickType_
 
 BaseType_t xQueueSendFromISR(QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t *pxHigherPriorityTaskWoken)
 {
+    *pxHigherPriorityTaskWoken = Queue::queue->GetPxHigherPriorityTaskWoken();
     return Queue::queue->xQueueSendFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
 }
 
@@ -73,6 +82,7 @@ BaseType_t xQueueReceive(QueueHandle_t xQueue, void *const pvBuffer, TickType_t 
 
 BaseType_t xQueueReceiveFromISR(QueueHandle_t xQueue, void *const pvBuffer, BaseType_t *const pxHigherPriorityTaskWoken)
 {
+    *pxHigherPriorityTaskWoken = Queue::queue->GetPxHigherPriorityTaskWoken();
     return Queue::queue->xQueueReceiveFromISR(xQueue, pvBuffer, pxHigherPriorityTaskWoken);
 }
 
