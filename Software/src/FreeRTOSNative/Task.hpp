@@ -37,9 +37,9 @@ public:
      *
      * @return TaskHandle_t* const
      */
-    virtual TaskHandle_t *const getPxCreatedTask()
+    virtual TaskHandle_t const getPxCreatedTask()
     {
-        return nullptr;
+        return NULL;
     }
 
     virtual void vTaskDelete(TaskHandle_t xTaskToDelete) {}
@@ -55,9 +55,9 @@ Task *Task::task = new Task;
 // Methods
 
 BaseType_t xTaskCreate(TaskFunction_t pvTaskCode, const char *const pcName, const uint32_t usStackDepth, void *const pvParameters,
-                       UBaseType_t uxPriority, TaskHandle_t *pxCreatedTask)
+                       UBaseType_t uxPriority, TaskHandle_t *const pxCreatedTask)
 {
-    pxCreatedTask = Task::task->getPxCreatedTask();
+    *pxCreatedTask = Task::task->getPxCreatedTask();
     return Task::task->xTaskCreate(pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask);
 }
 
