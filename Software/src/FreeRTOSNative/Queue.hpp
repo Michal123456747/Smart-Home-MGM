@@ -3,6 +3,8 @@
  * @brief Contains Queue methods and types from FreeRTOS and class to mock these methods
  */
 
+//TODO: Add possibility of manipulating data received from queue
+
 #include "Types.hpp"
 
 #pragma once
